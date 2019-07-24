@@ -74,12 +74,6 @@ class PreviewCamera :Thread{
         }
     }
 
-    private fun createPath():String{
-        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
-        return "image_" + timeStamp + "_" +".jpg"
-    }
-
-
     private fun getBehindCameraId():String{
         for (cameraId in cameraManger!!.cameraIdList){
             var lens:CameraCharacteristics = getCameraCharacter(cameraId)
@@ -90,7 +84,6 @@ class PreviewCamera :Thread{
         }
         return ""
     }
-
 
 
     private fun getCameraCharacter(cameraId:String):CameraCharacteristics = cameraManger!!.getCameraCharacteristics(cameraId)
@@ -140,7 +133,7 @@ class PreviewCamera :Thread{
 
         val surface:Surface = Surface(texture)
 
-        previewBuilder = cameraDevice!!.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE)
+        previewBuilder = cameraDevice!!.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW)
         previewBuilder.addTarget(surface)
 
         cameraDevice!!.createCaptureSession(listOf(surface), getCameraSessionCallback(), backgroundHandler)
@@ -163,10 +156,10 @@ class PreviewCamera :Thread{
 
 
     fun updatedPreview(){
-        previewBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_AWB_MODE_OFF)
+//        previewBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_AWB_MODE_OFF)//자동 화이트 베이스 옵션 끄기
         previewBuilder.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE)
-        previewBuilder.set(CaptureRequest.COLOR_CORRECTION_MODE, CaptureRequest.COLOR_CORRECTION_MODE_TRANSFORM_MATRIX)
-        previewBuilder.set(CaptureRequest.COLOR_CORRECTION_GAINS, colorTemperature(2300)) //wb설정
+//        previewBuilder.set(CaptureRequest.COLOR_CORRECTION_MODE, CaptureRequest.COLOR_CORRECTION_MODE_TRANSFORM_MATRIX)
+        //previewBuilder.set(CaptureRequest.COLOR_CORRECTION_GAINS, colorTemperature(2300)) //wb설정
         // previewBuilder.set(CaptureRequest.SENSOR_SENSITIVITY, 2) ISO설정
         previewSession!!.setRepeatingRequest(previewBuilder.build(), null, backgroundHandler)
     }
