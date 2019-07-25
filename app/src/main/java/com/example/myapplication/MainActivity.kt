@@ -22,6 +22,7 @@ import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccoun
 import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.drive.Drive
 import com.google.api.services.drive.DriveScopes
+import java.net.InetAddress
 import java.util.*
 
 
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity(){
     private var preview:PreviewCamera? = null
     private val REQUEST_CODE_SIGNIN = 1
     private var drive:Drive? = null
+    private lateinit var socketManagement: SocketManagement
     override fun onCreate(savedInstanceState: Bundle?) {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
@@ -39,6 +41,8 @@ class MainActivity : AppCompatActivity(){
         preview = PreviewCamera(this, textureView)
         camera_card.addView(DrawOnTop(this))
         requestSignIn()
+        socketManagement = SocketManagement()
+
     }
 
     private fun setPermission() {
@@ -112,7 +116,6 @@ class MainActivity : AppCompatActivity(){
     private fun handleSignInResult(result:Intent?){
         GoogleSignIn.getSignedInAccountFromIntent(result).addOnSuccessListener { googleSignInAccount ->
             run {
-                Log.e("asdasd", "asdasd")
                 val credential =
                     GoogleAccountCredential.usingOAuth2(this, Collections.singleton(DriveScopes.DRIVE_FILE))
                 credential.selectedAccount = googleSignInAccount.account

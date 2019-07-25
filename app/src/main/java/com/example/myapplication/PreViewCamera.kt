@@ -21,9 +21,16 @@ import kotlin.math.ln
 import kotlin.math.pow
 import android.hardware.camera2.CameraCharacteristics
 import com.google.api.services.drive.Drive
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Response
+import java.io.File
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.security.auth.callback.Callback
 
 
 class PreviewCamera :Thread{
@@ -50,6 +57,16 @@ class PreviewCamera :Thread{
         }
     }
 
+    private fun sendImage(path:String){
+        Thread{
+            val file = File(path)
+            val requestFile:RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
+            val body:MultipartBody.Part = MultipartBody.Part.createFormData("image", file.name, requestFile)
+            val receiver = SocketManagement().getRetrofitService().sendImage(body).execute()
+            Log.e("result", receiver.body().toString())
+        }.start()
+    }
+
     fun setDrive(drive: Drive?){
         helper = DriveServiceHelper(drive)
     }
@@ -62,10 +79,13 @@ class PreviewCamera :Thread{
             val file = photoSaver!!.createImageFile(galleryFolder)
             fileOutputStream = FileOutputStream(file)
             textureView!!.bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)
-
+            val imagePath:String= galleryFolder.absolutePath+"/"+file.name
+            sendImage(imagePath)
             helper!!
-                .saveFile(file.name, galleryFolder.absolutePath+"/"+file.name)
+                .saveFile(file.name, imagePath)
                 .addOnFailureListener { exception -> Log.e("exception", exception.toString()) }
+
+
         }catch (e:Exception){
             e.printStackTrace()
         }
