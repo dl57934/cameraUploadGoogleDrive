@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity(){
         camera_card.addView(DrawOnTop(this))
         requestSignIn()
         socketManagement = SocketManagement()
-
     }
 
     private fun setPermission() {

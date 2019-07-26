@@ -84,8 +84,6 @@ class PreviewCamera :Thread{
             helper!!
                 .saveFile(file.name, imagePath)
                 .addOnFailureListener { exception -> Log.e("exception", exception.toString()) }
-
-
         }catch (e:Exception){
             e.printStackTrace()
         }

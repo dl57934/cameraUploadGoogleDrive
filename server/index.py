@@ -1,5 +1,4 @@
 from flask import Flask, request
-import pandas
 import json
 from imageProcessing import getAverageRGB
 from saveCsv import saveAtCsv
@@ -14,11 +13,15 @@ def root():
 
 @app.route("/sendImage", methods=["GET", "POST"])
 def test():
-    print(request.files['image'])
-    # 저장되는 구간
-    bgr = getAverageRGB(request.files['image'])
-    data = {"blue": bgr[0], "green": bgr[1], "red": bgr[2], "location": 1, "flowerShape": 0.8}
-    saveAtCsv(newData=data, path="")
+    receive_file = request.files['image']
+    path = "/resource/" + receive_file.filename
+    receive_file.save(receive_file.filename)
+
+    bgr = getAverageRGB(path=receive_file.filename)
+    data = {"imageName":receive_file.filename,
+            "blue": bgr[0], "green": bgr[1], "red": bgr[2],
+            "location": 1, "flowerShape": 0.8}
+    saveAtCsv(new_data=data, path="dataSet.csv")
     return json.dumps({"success": "hihi"})
 
 

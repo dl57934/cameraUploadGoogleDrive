@@ -2,19 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9e738fb-1f94-4894-b5ff-305e400f8123" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/DataClasses.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/RetrofitAPI.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/socketManagement.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/src/main/res/xml/network_security_config.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/imageProcessing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/saveCsv.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dataSet.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/MainActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/PreViewCamera.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/PreViewCamera.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imageProcessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageProcessing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.py" beforeDir="false" afterPath="$PROJECT_DIR$/index.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/saveCsv.py" beforeDir="false" afterPath="$PROJECT_DIR$/saveCsv.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,62 +18,78 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/server$index.coverage" NAME="index Coverage Results" MODIFIED="1564079814706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/server$index.coverage" NAME="index Coverage Results" MODIFIED="1564116510385" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-720691210">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="3" />
+          <entry key="csv" value="2" />
+          <entry key="jpg" value="4" />
+          <entry key="py" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="3" />
+          <entry key="CSV" value="2" />
+          <entry key="Image" value="4" />
+          <entry key="Python" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1141" />
+          <entry key="csv" value="19" />
+          <entry key="py" value="1940" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1141" />
+          <entry key="CSV" value="19" />
+          <entry key="Python" value="1940" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="330">
+              <caret line="22" column="46" lean-forward="true" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
-                <marker date="1564081508009" expanded="true" signature="178:401" ph="..." />
-                <marker date="1564081508009" expanded="true" signature="264:401" ph="..." />
-                <marker date="1564081508009" expanded="true" signature="398:401" ph="..." />
+                <marker date="1564116693197" expanded="true" signature="194:717" ph="..." />
+                <marker date="1564116693197" expanded="true" signature="280:717" ph="..." />
+                <marker date="1564116693197" expanded="true" signature="714:717" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dataSet.csv">
+          <provider selected="true" editor-type-id="csv-text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/saveCsv.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+            <state relative-caret-position="120">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
               <folding>
-                <marker date="1564081508012" expanded="true" signature="32:37" ph="..." />
+                <marker date="1564116510376" expanded="true" signature="52:57" ph="..." />
               </folding>
             </state>
           </provider>
@@ -87,11 +98,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imageProcessing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="17" lean-forward="true" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+            <state relative-caret-position="75">
+              <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
               <folding>
-                <marker date="1564080819568" expanded="true" signature="51:52" ph="..." />
-                <marker date="1564080819568" expanded="true" signature="234:456" ph="..." />
+                <marker date="1564114959686" expanded="true" signature="55:56" ph="..." />
               </folding>
             </state>
           </provider>
@@ -113,8 +123,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/imageProcessing.py" />
-        <option value="$PROJECT_DIR$/index.py" />
         <option value="$PROJECT_DIR$/saveCsv.py" />
+        <option value="$PROJECT_DIR$/dataSet.csv" />
+        <option value="$PROJECT_DIR$/index.py" />
       </list>
     </option>
   </component>
@@ -124,7 +135,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="width" value="1680" />
     <option name="height" value="1050" />
   </component>
@@ -213,15 +224,9 @@
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24969475" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25274727" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Terminal" weight="0.32959184" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32959184" />
@@ -229,13 +234,19 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="R Packages" />
-      <window_info anchor="right" id="SciView" />
-      <window_info anchor="right" id="R Graphics" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32959184" />
+      <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="R Graphics" order="4" />
+      <window_info anchor="right" id="R Packages" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,36 +256,55 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/imageProcessing.py">
+    <entry file="file:///usr/local/lib/python3.7/site-packages/flask/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="17" lean-forward="true" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-          <folding>
-            <marker date="1564080819568" expanded="true" signature="51:52" ph="..." />
-            <marker date="1564080819568" expanded="true" signature="234:456" ph="..." />
-          </folding>
+        <state relative-caret-position="455">
+          <caret line="2445" selection-start-line="2445" selection-end-line="2445" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.py">
+    <entry file="file://$PROJECT_DIR$/image_20190726_130755_6300404569342143601.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/image_20190726_131811_212964191796161581.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imageProcessing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="75">
+          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
-            <marker date="1564081508009" expanded="true" signature="178:401" ph="..." />
-            <marker date="1564081508009" expanded="true" signature="264:401" ph="..." />
-            <marker date="1564081508009" expanded="true" signature="398:401" ph="..." />
+            <marker date="1564114959686" expanded="true" signature="55:56" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/saveCsv.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
           <folding>
-            <marker date="1564081508012" expanded="true" signature="32:37" ph="..." />
+            <marker date="1564116510376" expanded="true" signature="52:57" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataSet.csv">
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="46" lean-forward="true" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+            <marker date="1564116693197" expanded="true" signature="194:717" ph="..." />
+            <marker date="1564116693197" expanded="true" signature="280:717" ph="..." />
+            <marker date="1564116693197" expanded="true" signature="714:717" ph="..." />
           </folding>
         </state>
       </provider>
