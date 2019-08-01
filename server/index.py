@@ -4,6 +4,11 @@ from imageProcessing import getAverageRGB
 from saveCsv import saveAtCsv
 import os
 
+if not os.path.isfile("dataSet.csv"):
+    f = open("dataSet.csv", 'w')
+    f.write("imageName,blue,green,red,location,flowerShape")
+    f.close()
+
 app = Flask(__name__)
 
 

@@ -20,6 +20,7 @@ import android.hardware.camera2.params.RggbChannelVector
 import kotlin.math.ln
 import kotlin.math.pow
 import android.hardware.camera2.CameraCharacteristics
+import android.widget.Spinner
 import com.google.api.services.drive.Drive
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -41,6 +42,7 @@ class PreviewCamera :Thread{
     private lateinit var previewBuilder:CaptureRequest.Builder
     private var previewSession:CameraCaptureSession? = null
     private var appleButton:Button? = null
+    private var spinner: Spinner? = null
     private var backgroundHandler:Handler? = null
     private var photoSaver:PhotoSaver? = null
     private var helper:DriveServiceHelper? = null
@@ -50,6 +52,7 @@ class PreviewCamera :Thread{
         cameraManger = activity.getSystemService(Context.CAMERA_SERVICE) as CameraManager
         this.textureView = textureView
         photoSaver = PhotoSaver(activity)
+        spinner = activity.findViewById(R.id.locationSpinner)
         appleButton = activity.findViewById<Button>(R.id.apple_button)
         backgroundHandler = getBackgroundHandler()
         appleButton!!.setOnClickListener {
@@ -62,8 +65,8 @@ class PreviewCamera :Thread{
             val file = File(path)
             val requestFile:RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
             val body:MultipartBody.Part = MultipartBody.Part.createFormData("image", file.name, requestFile)
-            val receiver = SocketManagement().getRetrofitService().sendImage(body).execute()
-            Log.e("result", receiver.body().toString())
+            val location:String = spinner!!.selectedItem.toString()
+            val receiver = SocketManagement().getRetrofitService().sendImage(location, body).execute()
         }.start()
     }
 

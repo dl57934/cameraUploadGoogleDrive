@@ -13,6 +13,7 @@ import android.content.Intent
 import android.graphics.*
 import android.util.Log
 import android.view.*
+import android.widget.ArrayAdapter
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -24,6 +25,7 @@ import com.google.api.services.drive.Drive
 import com.google.api.services.drive.DriveScopes
 import java.net.InetAddress
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity(){
@@ -31,6 +33,8 @@ class MainActivity : AppCompatActivity(){
     private var preview:PreviewCamera? = null
     private val REQUEST_CODE_SIGNIN = 1
     private var drive:Drive? = null
+    private val locationList:ArrayList<String> = ArrayList()
+    private var locationAdapter: ArrayAdapter<String>? = null
     private lateinit var socketManagement: SocketManagement
     override fun onCreate(savedInstanceState: Bundle?) {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -38,11 +42,31 @@ class MainActivity : AppCompatActivity(){
         setContentView(R.layout.activity_main)
         setPermission()
         textureView = camera_texture_view
+        setArrayList()
+        setSpinner()
         preview = PreviewCamera(this, textureView)
         camera_card.addView(DrawOnTop(this))
         requestSignIn()
         socketManagement = SocketManagement()
+
     }
+
+    private fun setSpinner(){
+        locationAdapter = ArrayAdapter(this,
+            android.R.layout.simple_spinner_dropdown_item,
+            locationList)
+        locationSpinner.adapter = locationAdapter
+    }
+
+    private fun setArrayList(){
+        setListItem("영주")
+        setListItem("안동")
+        setListItem("거창")
+        setListItem("안동 경북 사과")
+        setListItem("군위")
+    }
+
+    private fun setListItem(location:String) = locationList.add(location)
 
     private fun setPermission() {
         if (permissionGrantedCheck()) {
