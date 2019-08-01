@@ -8,7 +8,7 @@
       <change beforePath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/socketManagement.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/com/example/myapplication/socketManagement.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/res/layout/activity_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataSet.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dataSet.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataSet.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/index.py" beforeDir="false" afterPath="$PROJECT_DIR$/index.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,7 +24,7 @@
     <session id="-720691210">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.2" value="1" />
@@ -35,14 +35,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="csv" value="6" />
+          <entry key="csv" value="10" />
           <entry key="jpg" value="5" />
           <entry key="py" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSV" value="6" />
+          <entry key="CSV" value="10" />
           <entry key="Image" value="5" />
           <entry key="Python" value="6" />
         </counts>
@@ -50,51 +50,47 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="csv" value="19" />
-          <entry key="py" value="2214" />
+          <entry key="py" value="2264" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSV" value="19" />
-          <entry key="Python" value="2214" />
+          <entry key="Python" value="2264" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+            <state relative-caret-position="120">
+              <caret line="8" column="58" selection-start-line="8" selection-start-column="58" selection-end-line="8" selection-end-column="58" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
-                <marker date="1564674808756" expanded="true" signature="248:812" ph="..." />
-                <marker date="1564674808756" expanded="true" signature="334:812" ph="..." />
-                <marker date="1564674808756" expanded="true" signature="809:812" ph="..." />
+                <marker date="1564674935818" expanded="true" signature="351:915" ph="..." />
+                <marker date="1564674935818" expanded="true" signature="437:915" ph="..." />
+                <marker date="1564674935818" expanded="true" signature="912:915" ph="..." />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dataSet.csv">
+          <provider selected="true" editor-type-id="csv-text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/saveCsv.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
               <folding>
                 <marker date="1564116510376" expanded="true" signature="52:57" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dataSet.csv">
-          <provider selected="true" editor-type-id="csv-text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="111" lean-forward="true" selection-start-line="1" selection-start-column="111" selection-end-line="1" selection-end-column="111" />
             </state>
           </provider>
         </entry>
@@ -237,7 +233,7 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32959184" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.498779" weight="0.32959184" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -247,7 +243,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.501221" side_tool="true" weight="0.32959184" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4993895" visible="true" weight="0.32959184" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4993895" weight="0.32959184" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -280,14 +276,6 @@
     <entry file="file://$PROJECT_DIR$/image_20190802_003109_6494213062317596752.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/dataSet.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="111" lean-forward="true" selection-start-line="1" selection-start-column="111" selection-end-line="1" selection-end-column="111" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/imageProcessing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -301,7 +289,7 @@
     <entry file="file://$PROJECT_DIR$/saveCsv.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
           <folding>
             <marker date="1564116510376" expanded="true" signature="52:57" ph="..." />
           </folding>
@@ -310,16 +298,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+        <state relative-caret-position="120">
+          <caret line="8" column="58" selection-start-line="8" selection-start-column="58" selection-end-line="8" selection-end-column="58" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
-            <marker date="1564674808756" expanded="true" signature="248:812" ph="..." />
-            <marker date="1564674808756" expanded="true" signature="334:812" ph="..." />
-            <marker date="1564674808756" expanded="true" signature="809:812" ph="..." />
+            <marker date="1564674935818" expanded="true" signature="351:915" ph="..." />
+            <marker date="1564674935818" expanded="true" signature="437:915" ph="..." />
+            <marker date="1564674935818" expanded="true" signature="912:915" ph="..." />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataSet.csv">
+      <provider selected="true" editor-type-id="csv-text-editor" />
+      <provider editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

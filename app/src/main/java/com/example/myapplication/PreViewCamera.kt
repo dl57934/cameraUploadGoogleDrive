@@ -66,7 +66,19 @@ class PreviewCamera :Thread{
             val requestFile:RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
             val body:MultipartBody.Part = MultipartBody.Part.createFormData("image", file.name, requestFile)
             val location:String = spinner!!.selectedItem.toString()
-            val receiver = SocketManagement().getRetrofitService().sendImage(location, body).execute()
+//            val receiver = SocketManagement().getRetrofitService().sendImage(location, body).execute()
+            SocketManagement().getRetrofitService().sendImage(location, body).enqueue(object : retrofit2.Callback<IsSuccessSendImageFile> {
+                override fun onFailure(call: Call<IsSuccessSendImageFile>, t: Throwable) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+                override fun onResponse(
+                    call: Call<IsSuccessSendImageFile>,
+                    response: Response<IsSuccessSendImageFile>
+                ) {
+                    Log.e("server Response", response.body().toString())
+                }
+
+            })
         }.start()
     }
 
