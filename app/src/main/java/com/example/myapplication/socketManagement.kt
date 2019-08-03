@@ -11,7 +11,7 @@ class SocketManagement{
         .create()
     private val mretrofit:Retrofit = Retrofit
         .Builder()
-        .baseUrl("http://10.0.0.50:5000/")
+        .baseUrl("http://ec2-18-216-201-243.us-east-2.compute.amazonaws.com:5000/")
         .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
     private val retrofitService = mretrofit.create(RetrofitAPI::class.java)

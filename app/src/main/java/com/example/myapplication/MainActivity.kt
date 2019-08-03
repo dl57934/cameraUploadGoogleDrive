@@ -8,12 +8,16 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
 import android.annotation.SuppressLint
+import android.content.ClipData
 import android.content.Context
 import android.content.Intent
 import android.graphics.*
 import android.util.Log
 import android.view.*
+import android.view.View.X
 import android.widget.ArrayAdapter
+import android.widget.FrameLayout
+import android.widget.RelativeLayout
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -29,6 +33,10 @@ import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity(){
+    var mRadius:Int = 0
+    var mMaxDist:Int = 0
+    lateinit var mCenter:PointF
+
     private lateinit var textureView:TextureView
     private var preview:PreviewCamera? = null
     private val REQUEST_CODE_SIGNIN = 1
@@ -36,12 +44,53 @@ class MainActivity : AppCompatActivity(){
     private val locationList:ArrayList<String> = ArrayList()
     private var locationAdapter: ArrayAdapter<String>? = null
     private lateinit var socketManagement: SocketManagement
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setPermission()
         textureView = camera_texture_view
+        camera_card.setOnTouchListener(object : View.OnClickListener, View.OnTouchListener {
+            override fun onClick(v: View?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                var rect = Rect()
+                v!!.getGlobalVisibleRect(rect)
+
+                mRadius = textureView.width / 2
+                mMaxDist = textureView.height/ 2
+                var x:Float = (rect.left + mRadius).toFloat()
+                var y:Float = (rect.top + mMaxDist).toFloat()
+                mCenter = PointF(x, y)
+
+                var a:Float = event!!.x
+                var b:Float = event.y
+                var c:Float = event.rawX
+                var d:Float = event.rawY
+
+                if ( mCenter.x > event.rawX) {
+                    a = mCenter.x - c + textureView.width / 2
+                }
+                if ( mCenter.y > event.getRawY() ) {
+                    b = mCenter.y - d + textureView.height / 2
+                }
+
+                if ( a > b )
+                    b = a
+                else
+                    a = b
+
+                textureView.layoutParams = FrameLayout.LayoutParams(a.toInt(), b.toInt(), Gravity.CENTER)
+
+//
+
+                return false
+            }
+
+        })
         setArrayList()
         setSpinner()
         preview = PreviewCamera(this, textureView)
@@ -154,5 +203,7 @@ class MainActivity : AppCompatActivity(){
         }.addOnFailureListener { exception -> Log.e("Unable to Sign In", exception.toString()) }
 
     }
+
+
 
 }
