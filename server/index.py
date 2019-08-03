@@ -3,6 +3,7 @@ import json
 from imageProcessing import getAverageRGB
 from saveCsv import saveAtCsv
 import os
+import shutil
 
 if not os.path.isfile("dataSet.csv"):
     f = open("dataSet.csv", 'w')
@@ -23,12 +24,15 @@ def test():
     location = request.args.get("location")
     receive_file.save(receive_file.filename)
 
+    shutil.move(receive_file.filename, "resource/"+receive_file.filename)
+    os.remove(receive_file.filename)
+
     bgr = getAverageRGB(path=receive_file.filename)
     data = {"imageName": receive_file.filename,
             "blue": bgr[0], "green": bgr[1], "red": bgr[2],
             "location": location, "flowerShape": 0.8}
     saveAtCsv(new_data=data, path="dataSet.csv")
-    os.remove(receive_file.filename)
+
     return json.dumps({"success": "hihi"})
 
 
