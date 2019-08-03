@@ -4,7 +4,10 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Camera
+import android.graphics.Rect
 import android.graphics.SurfaceTexture
+import android.hardware.SensorManager.getOrientation
 import android.hardware.camera2.*
 import android.hardware.camera2.params.StreamConfigurationMap
 import android.os.Handler
@@ -20,6 +23,8 @@ import android.hardware.camera2.params.RggbChannelVector
 import kotlin.math.ln
 import kotlin.math.pow
 import android.hardware.camera2.CameraCharacteristics
+import android.view.MotionEvent
+import android.view.View
 import android.widget.Spinner
 import com.google.api.services.drive.Drive
 import okhttp3.MediaType
@@ -32,9 +37,11 @@ import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.security.auth.callback.Callback
+import kotlin.math.roundToInt
+import kotlin.math.sqrt
 
 
-class PreviewCamera :Thread{
+class PreviewCamera{
     private var cameraDevice:CameraDevice? = null
     private lateinit var previewSize:Size
     private var cameraManger:CameraManager? = null
@@ -47,10 +54,26 @@ class PreviewCamera :Thread{
     private var photoSaver:PhotoSaver? = null
     private var helper:DriveServiceHelper? = null
 
+
+    //Lock
+    private val STATE_PREVIEW = 0
+    private val state = STATE_PREVIEW
+    private val STATE_WAITING_LOCK = 1
+    private val STATE_WAITING_PRECAPTURE = 2
+    private val STATE_WAITING_NON_PRECAPTURE = 3
+    private val STATE_PICTURE_TAKEN = 4
+
+    //zooming
+    private var fingerSpacing = 0
+    private var zoomLevel = 1f
+    private var maximumZoomLevel: Float = 0.toFloat()
+    private var zoom: Rect? = null
+
     @SuppressLint("ClickableViewAccessibility")
     constructor(activity: Activity, textureView: TextureView) {
         cameraManger = activity.getSystemService(Context.CAMERA_SERVICE) as CameraManager
         this.textureView = textureView
+        maximumZoomLevel = (getCameraCharacter(getBehindCameraId()).get(CameraCharacteristics.SCALER_AVAILABLE_MAX_DIGITAL_ZOOM))
         photoSaver = PhotoSaver(activity)
         spinner = activity.findViewById(R.id.locationSpinner)
         appleButton = activity.findViewById<Button>(R.id.apple_button)
@@ -58,7 +81,60 @@ class PreviewCamera :Thread{
         appleButton!!.setOnClickListener {
             savePhoto()
         }
+
+        textureView.setOnTouchListener { v, event ->
+            Log.e("asasd", "asdasd")
+            zoomEvent(event)
+        }
     }
+
+    private fun zoomEvent(event: MotionEvent):Boolean{
+        try {
+            val rect =
+                getCameraCharacter(getBehindCameraId()).get(CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE)
+                    ?: return false
+            var currentFingerSpacing:Float = 0.0f
+
+            if (event.pointerCount == 2) { //Multi touch.
+                currentFingerSpacing = getFingerSpacing(event)
+                var delta:Float = 0.05f
+                if (fingerSpacing != 0) {
+                    if (currentFingerSpacing > fingerSpacing) {
+                        if ((maximumZoomLevel - zoomLevel) <= delta) {
+                            delta = maximumZoomLevel - zoomLevel;
+                        }
+                        zoomLevel = zoomLevel + delta;
+                    } else if (currentFingerSpacing < fingerSpacing){
+                        if ((zoomLevel - delta) < 1f) {
+                            delta = zoomLevel - 1f;
+                        }
+                        zoomLevel -= delta;
+                    }
+                    var ratio = 1 / zoomLevel
+                    var croppedWidth = rect.width() - (rect.width() * ratio).roundToInt();
+                    var croppedHeight = rect.height() - (rect.height () * ratio).roundToInt()
+                    zoom = Rect(croppedWidth/2, croppedHeight/2,
+                            rect.width() - croppedWidth/2, rect.height() - croppedHeight/2)
+                    previewBuilder.set(CaptureRequest.SCALER_CROP_REGION, zoom)
+                }
+                fingerSpacing = currentFingerSpacing.toInt()
+            } else {
+                return true
+            }
+            updatedPreview()
+            return true
+        } catch (e:Exception){
+            e.printStackTrace()
+        }
+        return true
+    }
+
+    private fun getFingerSpacing(event: MotionEvent): Float {
+        val x = event.getX(0) - event.getX(1)
+        val y = event.getY(0) - event.getY(1)
+        return sqrt((x * x + y * y).toDouble()).toFloat()
+    }
+
 
     private fun sendImage(path:String){
         Thread{
@@ -143,7 +219,7 @@ class PreviewCamera :Thread{
         }
     }
 
-    private fun getCameraStateListener()= object:CameraDevice.StateCallback(){
+    private fun getCameraStateListener() = object:CameraDevice.StateCallback(){
             override fun onOpened(camera: CameraDevice) {
                 cameraDevice = camera
                 startPreview()
@@ -167,6 +243,7 @@ class PreviewCamera :Thread{
         val surface:Surface = Surface(texture)
 
         previewBuilder = cameraDevice!!.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW)
+        previewBuilder.set(CaptureRequest.SCALER_CROP_REGION, zoom)
         previewBuilder.addTarget(surface)
 
         cameraDevice!!.createCaptureSession(listOf(surface), getCameraSessionCallback(), backgroundHandler)
@@ -176,7 +253,7 @@ class PreviewCamera :Thread{
 
     private fun isCanPlayCamera():Boolean = cameraDevice == null || !textureView!!.isAvailable //함수이름 물어보
 
-    private fun getCameraSessionCallback() = object: CameraCaptureSession.StateCallback() {
+    private fun getCameraSessionCallback():CameraCaptureSession.StateCallback = object: CameraCaptureSession.StateCallback() {
         override fun onConfigureFailed(session: CameraCaptureSession) {
         }
 
@@ -292,6 +369,10 @@ class PreviewCamera :Thread{
             cameraOpenCloseLock.release()
         }
     }
+
+
+
+
 }
 
 
