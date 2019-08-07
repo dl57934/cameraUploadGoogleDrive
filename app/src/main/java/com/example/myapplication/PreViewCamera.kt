@@ -83,9 +83,7 @@ class PreviewCamera{
         appleButton!!.setOnClickListener {
             savePhoto()
         }
-
         textureView.setOnTouchListener { v, event ->
-            Log.e("asasd", "asdasd")
             zoomEvent(event)
         }
     }
@@ -137,9 +135,6 @@ class PreviewCamera{
         return sqrt((x * x + y * y).toDouble()).toFloat()
     }
 
-
-
-
     fun setDrive(drive: Drive?){
         helper = DriveServiceHelper(drive)
     }
@@ -148,7 +143,6 @@ class PreviewCamera{
         var fileOutputStream: FileOutputStream? = null
         try{
             val galleryFolder:java.io.File = photoSaver!!.createImageGallery()
-            Log.e("path", galleryFolder.absolutePath)
             val file:File = photoSaver!!.createImageFile(galleryFolder)
             fileOutputStream = FileOutputStream(file)
             textureView!!.bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)
@@ -186,12 +180,8 @@ class PreviewCamera{
 
     private fun setPreviewSize(lens:CameraCharacteristics){
         val map:StreamConfigurationMap? = lens.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)
-        val sizes = map!!.getOutputSizes(SurfaceTexture::class.java)
-        previewSize = sizes[0]
-
-        for (size:Size in sizes)
-            if (size.width > previewSize.width)
-                previewSize = size
+        val size:Size = Size(3024, 3024)
+        previewSize = size
     }
 
 
