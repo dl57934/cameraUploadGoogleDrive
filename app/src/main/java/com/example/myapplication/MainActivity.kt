@@ -59,7 +59,6 @@ class MainActivity : AppCompatActivity(){
         setArrayList()
         setSpinner()
         preview = PreviewCamera(this, textureView)
-        camera_card.addView(DrawOnTop(this))
         requestSignIn()
         socketManagement = SocketManagement()
     }

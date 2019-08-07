@@ -3,6 +3,7 @@ package com.example.myapplication
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Camera
 import android.graphics.Rect
@@ -46,6 +47,7 @@ class PreviewCamera{
     private lateinit var previewSize:Size
     private var cameraManger:CameraManager? = null
     private var textureView:TextureView? = null
+    private var activity:Activity? = null
     private lateinit var previewBuilder:CaptureRequest.Builder
     private var previewSession:CameraCaptureSession? = null
     private var appleButton:Button? = null
@@ -53,7 +55,6 @@ class PreviewCamera{
     private var backgroundHandler:Handler? = null
     private var photoSaver:PhotoSaver? = null
     private var helper:DriveServiceHelper? = null
-
 
     //Lock
     private val STATE_PREVIEW = 0
@@ -73,6 +74,7 @@ class PreviewCamera{
     constructor(activity: Activity, textureView: TextureView) {
         cameraManger = activity.getSystemService(Context.CAMERA_SERVICE) as CameraManager
         this.textureView = textureView
+        this.activity = activity
         maximumZoomLevel = (getCameraCharacter(getBehindCameraId()).get(CameraCharacteristics.SCALER_AVAILABLE_MAX_DIGITAL_ZOOM))
         photoSaver = PhotoSaver(activity)
         spinner = activity.findViewById(R.id.locationSpinner)
@@ -136,27 +138,7 @@ class PreviewCamera{
     }
 
 
-    private fun sendImage(path:String){
-        Thread{
-            val file = File(path)
-            val requestFile:RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
-            val body:MultipartBody.Part = MultipartBody.Part.createFormData("image", file.name, requestFile)
-            val location:String = spinner!!.selectedItem.toString()
-//            val receiver = SocketManagement().getRetrofitService().sendImage(location, body).execute()
-            SocketManagement().getRetrofitService().sendImage(location, body).enqueue(object : retrofit2.Callback<IsSuccessSendImageFile> {
-                override fun onFailure(call: Call<IsSuccessSendImageFile>, t: Throwable) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-                override fun onResponse(
-                    call: Call<IsSuccessSendImageFile>,
-                    response: Response<IsSuccessSendImageFile>
-                ) {
-                    Log.e("server Response", response.body().toString())
-                }
 
-            })
-        }.start()
-    }
 
     fun setDrive(drive: Drive?){
         helper = DriveServiceHelper(drive)
@@ -167,14 +149,18 @@ class PreviewCamera{
         try{
             val galleryFolder:java.io.File = photoSaver!!.createImageGallery()
             Log.e("path", galleryFolder.absolutePath)
-            val file = photoSaver!!.createImageFile(galleryFolder)
+            val file:File = photoSaver!!.createImageFile(galleryFolder)
             fileOutputStream = FileOutputStream(file)
             textureView!!.bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)
             val imagePath:String= galleryFolder.absolutePath+"/"+file.name
-            sendImage(imagePath)
+            val intent:Intent = Intent(activity!!.applicationContext, Main2Activity::class.java)
+            intent.putExtra("file", file.path)
+            intent.putExtra("spinner", spinner!!.selectedItem.toString())
             helper!!
                 .saveFile(file.name, imagePath)
                 .addOnFailureListener { exception -> Log.e("exception", exception.toString()) }
+            activity!!.startActivity(intent)
+
         }catch (e:Exception){
             e.printStackTrace()
         }

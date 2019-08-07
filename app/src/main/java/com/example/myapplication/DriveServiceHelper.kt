@@ -18,7 +18,7 @@ import java.util.concurrent.Executor
 
 
 internal class DriveServiceHelper(private val driveService: Drive?) {
-    var mExecutor: Executor = Executors.newSingleThreadExecutor()
+    private var mExecutor: Executor = Executors.newSingleThreadExecutor()
 
     fun saveFile(name: String, path:String): Task<String> {
         return Tasks.call(mExecutor, Callable {
