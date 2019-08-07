@@ -3,6 +3,7 @@ package com.example.myapplication
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.EditText
 import kotlinx.android.synthetic.main.activity_main2.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -19,12 +20,14 @@ class Main2Activity : AppCompatActivity() {
         val filePath = intent.getStringExtra("file")
         val location = intent.getStringExtra("spinner")
         sendButton.setOnClickListener {
+            Log.e("file", filePath+location)
             sendImage(filePath, location)
         }
     }
 
-    private fun getBrixAverage() = (StringToFloat(brix1.toString()) + StringToFloat(brix2.toString()) + StringToFloat(brix3.toString()))/3
+    private fun getBrixAverage():Float = (StringToFloat(getEditText(brix1)) + StringToFloat(getEditText(brix2)) + StringToFloat(getEditText(brix3)))/3
 
+    private fun getEditText(brix:EditText) =brix.text.toString()
 
     private fun StringToFloat(data:String) = data.toFloat()
 
@@ -34,6 +37,7 @@ class Main2Activity : AppCompatActivity() {
             val requestFile: RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
             val body: MultipartBody.Part = MultipartBody.Part.createFormData("image", file.name, requestFile)
             val brix:String = getBrixAverage().toString()
+            Log.e("brix", brix)
 //            val receiver = SocketManagement().getRetrofitService().sendImage(location, body).execute()
             SocketManagement().getRetrofitService().sendImage("$location,$brix", body).enqueue(object : retrofit2.Callback<IsSuccessSendImageFile> {
                 override fun onFailure(call: Call<IsSuccessSendImageFile>, t: Throwable) {
@@ -48,5 +52,6 @@ class Main2Activity : AppCompatActivity() {
 
             })
         }.start()
+        this.finish()
     }
 }

@@ -230,6 +230,7 @@ class PreviewCamera{
 
         previewBuilder = cameraDevice!!.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW)
         previewBuilder.set(CaptureRequest.SCALER_CROP_REGION, zoom)
+        previewBuilder.set(CaptureRequest.FLASH_MODE, CaptureRequest.FLASH_MODE_TORCH)
         previewBuilder.addTarget(surface)
 
         cameraDevice!!.createCaptureSession(listOf(surface), getCameraSessionCallback(), backgroundHandler)
