@@ -7,7 +7,7 @@ import shutil
 
 if not os.path.isfile("dataSet.csv"):
     f = open("dataSet.csv", 'w')
-    f.write("imageName,blue,green,red,location,flowerShape")
+    f.write("imageName,blue,green,red,location,flowerShape,brix")
     f.close()
 
 app = Flask(__name__)
@@ -21,13 +21,13 @@ def root():
 @app.route("/sendImage", methods=["GET", "POST"])
 def test():
     receive_file = request.files['image']
-    location = request.args.get("location")
+    location, brix = request.args.get("location").split(",")
     receive_file.save(receive_file.filename)
 
     bgr = getAverageRGB(path=receive_file.filename)
     data = {"imageName": receive_file.filename,
             "blue": bgr[0], "green": bgr[1], "red": bgr[2],
-            "location": location, "flowerShape": 0.8}
+            "location": location, "flowerShape": 0.8, "brix":brix}
     saveAtCsv(new_data=data, path="dataSet.csv")
     shutil.move(receive_file.filename, "resource/"+receive_file.filename)
 
